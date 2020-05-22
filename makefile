@@ -15,7 +15,13 @@ ChessPieceFactory.o: chess/ChessPieceFactory.cpp chess/headers/ChessPieceFactory
 	g++ $(CFLAGS) -c chess/ChessPieceFactory.cpp
 
 ChessPieceDescriptor.o: chess/ChessPieceDescriptor.cpp chess/headers/ChessPieceDescriptor.h 
-	g++ $(CFLAGS) -c chess/ChessPieceDescriptor.cpp 
+	g++ $(CFLAGS) -c chess/ChessPieceDescriptor.cpp
+
+Square.o: Field/Square.cpp Field/Headers/Square.h
+	g++ $(CFLAGS) -c Field/Square.cpp
+
+Board.o: Field/Board.cpp Field/Headers/Board.h Field/Headers/Square.h
+	g++ $(CFLAGS) -c Field/Board.cpp	
 
 clean:
-	rm -f main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o main
+	rm -f main.o Square.o Board.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o main
