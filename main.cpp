@@ -23,5 +23,6 @@ int main() {
     Square* dest = Square::makeSquare(2, 2);
 
     cout << start->distanceTo(dest) << endl;
-
+    
+    return 0;
 }

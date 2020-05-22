@@ -1,4 +1,4 @@
-CFLAGS = -g -Wall
+CFLAGS = -g -std=c++14 -Wall
 
 all: main
 
