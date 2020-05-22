@@ -24,5 +24,5 @@ int main() {
 
     cout << start->distanceTo(dest) << endl;
     
-    return 0;
+    return -1;
 }
