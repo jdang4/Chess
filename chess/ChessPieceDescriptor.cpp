@@ -11,11 +11,11 @@ char const* ChessPieceDescriptor::getColor() {
     char const* pieceColor;
 
     switch(color) {
-        case 1 :
+        case 0 :
             pieceColor = "WHITE";
             break;
 
-        case 2 :
+        case 1 :
             pieceColor = "BLACK";
             break;
 
@@ -32,16 +32,20 @@ char const* ChessPieceDescriptor::getPieceName() {
 
     switch(name) {
 
-        case 1 :
+        case 0 :
             pieceName = "PAWN";
             break;
             
-        case 2 :
+        case 1 :
             pieceName = "ROOK";
             break;
 
-        case 3 :
+        case 2 :
             pieceName = "KNIGHT";
+            break;
+
+        case 3 :
+            pieceName = "BISHOP";
             break;
 
         case 4 :
