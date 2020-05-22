@@ -14,9 +14,7 @@
 
 Board::Board() {
     for(int r = 0; r < MAX_ROWS; r++) {
-        for (int c = 0; c < MAX_COLUMNS; c++) {
-            // TODO
-        }
+        chessBoard[r] = new Square(0,0); // will fix
     }
 }
 
