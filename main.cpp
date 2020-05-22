@@ -5,7 +5,7 @@
 #include "chess/headers/ChessPieceDescriptor.h"
 #include "chess/headers/ChessPiece.h"
 #include "chess/headers/ChessPieceFactory.h"
-#include "util/headers/Coordinate.h"
+#include "util/headers/Square.h"
 
 using namespace std;
 
@@ -19,8 +19,8 @@ int main() {
 
     ChessPiece* piece = factory->makePiece(des);
 
-    Coordinate* start = Coordinate::makeCoordinate(1, 1);
-    Coordinate* dest = Coordinate::makeCoordinate(2, 2);
+    Square* start = Square::makeSquare(1, 1);
+    Square* dest = Square::makeSquare(2, 2);
 
     cout << start->distanceTo(dest) << endl;
 

@@ -1,7 +1,7 @@
 #ifndef BOARD_H
 #define BOARD_H
 
-#include "Square.h"
+class Square;
 
 class Board {
     public:
@@ -10,6 +10,8 @@ class Board {
 
     private:
         Square **chessBoard = new Square*[8];
+        const int MAX_ROWS = 8;
+        const int MAX_COLUMNS = 8;
 
 };
 

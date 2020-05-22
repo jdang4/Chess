@@ -1,8 +1,11 @@
-#include "Headers/Board.h"
+#include "headers/Board.h"
+#include "headers/Square.h"
 
 Board::Board() {
-    for(int r = 0; r < 8; r++) {
-        chessBoard[r] = new Square();
+    for(int r = 0; r < MAX_ROWS; r++) {
+        for (int c = 0; c < MAX_COLUMNS; c++) {
+            // TODO
+        }
     }
 }
 

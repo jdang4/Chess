@@ -2,8 +2,8 @@ CFLAGS = -g -Wall
 
 all: main
 
-main: main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Coordinate.o
-	g++ $(CFLAGS) main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Coordinate.o -o main 
+main: main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Square.o Board.o
+	g++ $(CFLAGS) main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Square.o Board.o -o main 
 
 main.o: main.cpp 
 	g++ $(CFLAGS) -c main.cpp 
@@ -17,18 +17,11 @@ ChessPieceFactory.o: chess/ChessPieceFactory.cpp chess/headers/ChessPieceFactory
 ChessPieceDescriptor.o: chess/ChessPieceDescriptor.cpp chess/headers/ChessPieceDescriptor.h 
 	g++ $(CFLAGS) -c chess/ChessPieceDescriptor.cpp
 
-Square.o: Field/Square.cpp Field/Headers/Square.h
-	g++ $(CFLAGS) -c Field/Square.cpp
+Board.o: util/Board.cpp util/headers/Board.h util/headers/Square.h
+	g++ $(CFLAGS) -c util/Board.cpp	
 
-Board.o: Field/Board.cpp Field/Headers/Board.h Field/Headers/Square.h
-	g++ $(CFLAGS) -c Field/Board.cpp	
-
-Coordinate.o: util/Coordinate.cpp util/headers/Coordinate.h 
-	g++ $(CFLAGS) -c util/Coordinate.cpp
+Square.o: util/Square.cpp util/headers/Square.h 
+	g++ $(CFLAGS) -c util/Square.cpp
 
 clean:
-<<<<<<< HEAD
-	rm -f main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Coordinate.o main
-=======
-	rm -f main.o Square.o Board.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o main
->>>>>>> f16bc9d96ad8ec6889db95a2a0d8f48d96f514b4
+	rm -f main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Square.o Board.o main
