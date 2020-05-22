@@ -5,6 +5,7 @@
 #include "chess/headers/ChessPieceDescriptor.h"
 #include "chess/headers/ChessPiece.h"
 #include "chess/headers/ChessPieceFactory.h"
+#include "util/headers/Coordinate.h"
 
 using namespace std;
 
@@ -18,5 +19,9 @@ int main() {
 
     ChessPiece* piece = factory->makePiece(des);
 
-    cout << piece->getHasMoved() << endl;
+    Coordinate* start = Coordinate::makeCoordinate(1, 1);
+    Coordinate* dest = Coordinate::makeCoordinate(2, 2);
+
+    cout << start->distanceTo(dest) << endl;
+
 }

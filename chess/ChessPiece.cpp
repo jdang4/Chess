@@ -18,3 +18,12 @@ bool ChessPiece::getHasMoved() {
 ChessPieceDescriptor* ChessPiece::getDescriptor() {
     return descriptor;
 }
+
+char const* ChessPiece::getPieceName() {
+    return descriptor->getPieceName();
+}
+
+char const* ChessPiece::getPieceColor() {
+    return descriptor->getColor();
+}
+
