@@ -39,6 +39,8 @@ Board::Board() {
  * @return false if not occoupied
  */
 bool Board::isOccupied(Square *sq) {
+    if(gameBoard.size() == 0) return false;
+
     if(gameBoard.find(sq) == gameBoard.end()) return false;
     else return true;
 }
@@ -59,8 +61,12 @@ ChessPiece* Board::getChessPiece(Square *sq) {
  * 
  * @param sq Key - square containing possible piece
  */
-void Board::removePiece(Square *sq) {
-    if(gameBoard.find(sq) != gameBoard.end()) gameBoard.erase(sq);
+void Board::removePiece(Square *sq, Color color) {
+    if(gameBoard.find(sq) != gameBoard.end()) {
+        gameBoard.erase(sq);
+        if(color == WHITE) wPieces.erase(std::find(wPieces.begin(), wPieces.end(), sq));
+        else bPieces.erase(std::find(bPieces.begin(), bPieces.end(), sq));
+    }
 }
 
 /**

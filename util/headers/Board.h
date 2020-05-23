@@ -17,7 +17,7 @@ class Board {
         Board();
         virtual ~Board();
         bool isOccupied(Square *sq);
-        void removePiece(Square *sq);
+        void removePiece(Square *sq, Color color);
         ChessPiece* getChessPiece(Square *sq);
         std::vector<Square*> getAllbPieces() { return bPieces; }
         std::vector<Square*> getAllwPieces() { return wPieces; }
