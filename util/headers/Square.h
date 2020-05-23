@@ -1,6 +1,8 @@
 #ifndef SQUARE_H
 #define SQUARE_H
 
+#include <cstdlib>
+
 class Square {
     
     public:
@@ -8,14 +10,14 @@ class Square {
     virtual ~Square();
 
     static Square* makeSquare(int r, int y);
-    int getRow();
-    int getColumn();
+    int getRow() { return row; }
+    int getColumn() { return column; }
     int distanceTo(Square* dest);
 
 
     private:
     int row;
-    int column;
+    char column;
 
 };
 

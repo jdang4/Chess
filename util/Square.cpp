@@ -1,21 +1,4 @@
-#include <iostream>
-#include <cstdlib>
-
 #include "headers/Square.h"
- /**
-  * TODO: row and column
-  * 
-  */
-
-const auto orthoCheck = [](Square* start, Square* end) 
-{
-    return start->getRow() == end->getRow() || start->getColumn() == end->getColumn();
-};
-
-const auto diagonalCheck = [](Square* start, Square* end)
-{
-    return abs(start->getRow() - end->getRow()) == abs(start->getColumn() - end->getColumn());
-};
 
 Square::Square(int r, int c) {
     row = r;
@@ -30,7 +13,20 @@ Square* Square::makeSquare(int r, int c) {
     return coord;
 }
 
+// ! Deprecated lambda function
+const auto orthoCheck = [](Square* start, Square* end) 
+{
+    return start->getRow() == end->getRow() || start->getColumn() == end->getColumn();
+};
+
+// ! Deprecated lambda function
+const auto diagonalCheck = [](Square* start, Square* end)
+{
+    return abs(start->getRow() - end->getRow()) == abs(start->getColumn() - end->getColumn());
+};
+
 /**
+ * ! deprecated Method
  * @brief Gets the distance between the calling Square to the destination Square
  * 
  * @param dest the Square to get the distance to
@@ -50,12 +46,4 @@ int Square::distanceTo(Square* dest) {
     }
 
     return distance;
-}
-
-int Square::getRow() {
-    return row;
-}
-
-int Square::getColumn() {
-    return column;
 }

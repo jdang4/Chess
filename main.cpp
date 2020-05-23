@@ -1,11 +1,13 @@
 #include <iostream>
 #include <cstdlib>
 #include <stdlib.h>
+#include <vector>
 
 #include "chess/headers/ChessPieceDescriptor.h"
 #include "chess/headers/ChessPiece.h"
 #include "chess/headers/ChessPieceFactory.h"
 #include "util/headers/Square.h"
+#include "util/headers/Board.h"
 
 using namespace std;
 
@@ -23,6 +25,13 @@ int main() {
     Square* dest = Square::makeSquare(2, 2);
 
     cout << start->distanceTo(dest) << endl;
+
+    Board *b = new Board();
+    vector<Square*> bPieces = b->getAllbPieces();
+    for(int i = 0; i < bPieces.size(); i++) 
+        cout << bPieces.at(i)->getRow() << endl;
+
+    if(b->isOccupied(bPieces.at(1))) cout << "TRUE" << endl;
     
-    return -1;
+    return 0;
 }
