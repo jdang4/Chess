@@ -19,11 +19,11 @@ ChessPieceDescriptor* ChessPiece::getDescriptor() {
     return descriptor;
 }
 
-char const* ChessPiece::getPieceName() {
+int ChessPiece::getPieceName() {
     return descriptor->getPieceName();
 }
 
-char const* ChessPiece::getPieceColor() {
+int ChessPiece::getPieceColor() {
     return descriptor->getColor();
 }
 

@@ -11,8 +11,10 @@ class ChessPieceDescriptor {
     ChessPieceDescriptor(Color color, Name name);
     virtual ~ChessPieceDescriptor();
 
-    char const* getColor();
-    char const* getPieceName();
+    int getColor();
+    int getPieceName();
+    void setColor(Color c);
+    void setName(Name n);
 
     private:
     Color color;
