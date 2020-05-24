@@ -6,6 +6,7 @@
  *  - Remove piece
  *  - check boundaries with square - is it valid?
  *  - Populate with proper starting coordinates of each unit  
+ * TODO: refactor with comparator
  */
 
 /**

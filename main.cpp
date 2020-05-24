@@ -33,5 +33,10 @@ int main() {
 
     if(b->isOccupied(bPieces.at(1))) cout << "TRUE" << endl;
     
+    Square* s1 = new Square(1, 2);
+    Square* s2 = new Square(1, 2);
+
+    if(*s1 == *s2) cout << "Comparator overload worked..." << endl;
+
     return 0;
 }
