@@ -15,7 +15,7 @@ int main() {
 
     ChessPieceDescriptor* des = new ChessPieceDescriptor(Color::WHITE, Name::KING);
 
-    cout << des->getPieceName() << endl;
+    cout << des->getPieceName() << " KING" << endl;
 
     ChessPieceFactory* factory = new ChessPieceFactory();
 

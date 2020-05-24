@@ -1,4 +1,5 @@
 #include "headers/Board.h"
+#include <algorithm>
 
 /**
  *  - Compare if something exists on Hashmap
@@ -65,7 +66,9 @@ ChessPiece* Board::getChessPiece(Square *sq) {
 void Board::removePiece(Square *sq, Color color) {
     if(gameBoard.find(sq) != gameBoard.end()) {
         gameBoard.erase(sq);
-        if(color == WHITE) wPieces.erase(std::find(wPieces.begin(), wPieces.end(), sq));
+        if(color == WHITE) {
+            wPieces.erase(std::find(wPieces.begin(), wPieces.end(), sq));
+        }
         else bPieces.erase(std::find(bPieces.begin(), bPieces.end(), sq));
     }
 }
@@ -77,7 +80,6 @@ void Board::removePiece(Square *sq, Color color) {
 void Board::initBoard() {
     ChessPieceFactory* factory = new ChessPieceFactory();  
 
-    gameBoard.insert(std::make_pair(new Square(1, 1), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
     gameBoard.insert(std::make_pair(new Square(1, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
     gameBoard.insert(std::make_pair(new Square(1, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
     gameBoard.insert(std::make_pair(new Square(1, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::QUEEN))));
@@ -86,14 +88,10 @@ void Board::initBoard() {
     gameBoard.insert(std::make_pair(new Square(1, 7), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
     gameBoard.insert(std::make_pair(new Square(1, 8), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
 
-    gameBoard.insert(std::make_pair(new Square(2, 1), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 5), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 6), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 7), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 8), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    for (int col = 1; col < MAX_COLUMNS; col++)
+    {
+        gameBoard.insert(std::make_pair(new Square(2, col), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    }
 
     gameBoard.insert(std::make_pair(new Square(8, 1), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
     gameBoard.insert(std::make_pair(new Square(8, 2), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
@@ -104,14 +102,10 @@ void Board::initBoard() {
     gameBoard.insert(std::make_pair(new Square(8, 7), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
     gameBoard.insert(std::make_pair(new Square(8, 8), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
 
-    gameBoard.insert(std::make_pair(new Square(7, 1), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 2), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 3), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 4), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 5), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 6), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 7), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 8), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    for (int col = 1; col < MAX_COLUMNS; col++)
+    {
+        gameBoard.insert(std::make_pair(new Square(7, col), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    }
 
 }
 
@@ -119,7 +113,7 @@ void Board::populateVect() {
     std::unordered_map<Square*, ChessPiece*>::iterator it = gameBoard.begin();
     while(it != gameBoard.end()) {
         ChessPiece* p = it->second;
-        if(p->getPieceColor() == "WHITE") wPieces.push_back(it->first);
+        if(p->getPieceColor() == WHITE) wPieces.push_back(it->first);
         else                              bPieces.push_back(it->first);
         it++;
     }

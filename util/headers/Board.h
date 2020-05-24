@@ -27,6 +27,10 @@ class Board {
         // Square **chessBoard = new Square*[8];
         const int MAX_ROWS = 8;
         const int MAX_COLUMNS = 8;
+        const int WHITE = 0;
+        const int BLACK = 0;
+
+
         void initBoard();
         void populateVect();
         std::unordered_map<Square*, ChessPiece*> gameBoard; 

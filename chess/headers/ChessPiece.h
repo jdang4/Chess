@@ -16,8 +16,8 @@ class ChessPiece {
 	// class methods
 	bool getHasMoved();
 	ChessPieceDescriptor* getDescriptor();
-	char const* getPieceName();
-	char const* getPieceColor();
+	int getPieceName();
+	int getPieceColor();
     
     private :
 	// class attributes
