@@ -80,6 +80,7 @@ void Board::removePiece(Square *sq, Color color) {
 void Board::initBoard() {
     ChessPieceFactory* factory = new ChessPieceFactory();  
 
+    gameBoard.insert(std::make_pair(new Square(1, 1), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
     gameBoard.insert(std::make_pair(new Square(1, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
     gameBoard.insert(std::make_pair(new Square(1, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
     gameBoard.insert(std::make_pair(new Square(1, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::QUEEN))));
@@ -114,7 +115,7 @@ void Board::populateVect() {
     while(it != gameBoard.end()) {
         ChessPiece* p = it->second;
         if(p->getPieceColor() == WHITE) wPieces.push_back(it->first);
-        else                              bPieces.push_back(it->first);
+        else                            bPieces.push_back(it->first);
         it++;
     }
 }
