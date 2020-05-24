@@ -76,41 +76,41 @@ void Board::removePiece(Square *sq, Color color) {
 void Board::initBoard() {
     ChessPieceFactory* factory = new ChessPieceFactory();  
 
-    gameBoard.insert(std::make_pair(new Square(1, 'A'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
-    gameBoard.insert(std::make_pair(new Square(1, 'B'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(1, 'C'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(1, 'D'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::QUEEN))));
-    gameBoard.insert(std::make_pair(new Square(1, 'E'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KING))));
-    gameBoard.insert(std::make_pair(new Square(1, 'F'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(1, 'G'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(1, 'H'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
+    gameBoard.insert(std::make_pair(new Square(1, 1), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
+    gameBoard.insert(std::make_pair(new Square(1, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
+    gameBoard.insert(std::make_pair(new Square(1, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
+    gameBoard.insert(std::make_pair(new Square(1, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::QUEEN))));
+    gameBoard.insert(std::make_pair(new Square(1, 5), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KING))));
+    gameBoard.insert(std::make_pair(new Square(1, 6), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
+    gameBoard.insert(std::make_pair(new Square(1, 7), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
+    gameBoard.insert(std::make_pair(new Square(1, 8), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
 
-    gameBoard.insert(std::make_pair(new Square(2, 'A'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'B'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'C'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'D'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'E'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'F'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'G'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(2, 'H'), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 1), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 5), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 6), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 7), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(2, 8), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
 
-    gameBoard.insert(std::make_pair(new Square(8, 'A'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
-    gameBoard.insert(std::make_pair(new Square(8, 'B'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(8, 'C'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(8, 'D'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::QUEEN))));
-    gameBoard.insert(std::make_pair(new Square(8, 'E'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KING))));
-    gameBoard.insert(std::make_pair(new Square(8, 'F'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(8, 'G'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(8, 'H'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
+    gameBoard.insert(std::make_pair(new Square(8, 1), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
+    gameBoard.insert(std::make_pair(new Square(8, 2), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
+    gameBoard.insert(std::make_pair(new Square(8, 3), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
+    gameBoard.insert(std::make_pair(new Square(8, 4), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::QUEEN))));
+    gameBoard.insert(std::make_pair(new Square(8, 5), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KING))));
+    gameBoard.insert(std::make_pair(new Square(8, 6), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
+    gameBoard.insert(std::make_pair(new Square(8, 7), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
+    gameBoard.insert(std::make_pair(new Square(8, 8), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
 
-    gameBoard.insert(std::make_pair(new Square(7, 'A'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'B'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'C'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'D'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'E'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'F'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'G'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    gameBoard.insert(std::make_pair(new Square(7, 'H'), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 1), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 2), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 3), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 4), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 5), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 6), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 7), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
+    gameBoard.insert(std::make_pair(new Square(7, 8), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
 
 }
 

@@ -6,18 +6,19 @@
 class Square {
     
     public:
-    Square(int r, char y);
+    Square(int r, int y);
     virtual ~Square();
 
-    static Square* makeSquare(int r, char y);
+    static Square* makeSquare(int r, int y);
     int getRow() { return row; }
-    char getColumn() { return column; }
+    int getColumn() { return column; }
+    void setPosition(int r, int c) { r = row; c = column; }
     int distanceTo(Square* dest);
 
 
     private:
     int row;
-    char column;
+    int column;
 
 };
 

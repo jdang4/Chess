@@ -1,13 +1,13 @@
 #include "headers/Square.h"
 
-Square::Square(int r, char c) {
+Square::Square(int r, int c) {
     row = r;
     column = c;
 }
 
 Square::~Square() {}
 
-Square* Square::makeSquare(int r, char c) {
+Square* Square::makeSquare(int r, int c) {
     Square* coord = new Square(r, c);
 
     return coord;
