@@ -26,17 +26,25 @@ int main() {
 
     cout << start->distanceTo(dest) << endl;
 
+    puts("----------Testing Board and Square-----------");
     Board *b = new Board();
-    vector<Square*> bPieces = b->getAllbPieces();
+    map<Square, ChessPiece*> gameA = b->getGameBoard();
+    vector<Square> bPieces = b->getAllbPieces();
+    vector<Square> wPieces = b->getAllwPieces();
+    Square squareNoPtr(1,1);
+    Square squareNoPtr1(1,1);
+
+    cout << "Black Pieces: ";
     for(int i = 0; i < bPieces.size(); i++) 
-        cout << bPieces.at(i)->getRow() << endl;
+        cout << bPieces.at(i).getRow() << " ";
 
-    if(b->isOccupied(bPieces.at(1))) cout << "TRUE" << endl;
-    
-    Square* s1 = new Square(1, 2);
-    Square* s2 = new Square(1, 2);
+    cout << "\nWhite Pieces: ";
+    for(int i = 0; i < wPieces.size(); i++) 
+        cout << wPieces.at(i).getRow() << " ";
 
-    if(*s1 == *s2) cout << "Comparator overload worked..." << endl;
+    if(b->isOccupied(squareNoPtr)) cout << "\nisOccupied works" << endl;
+    if(squareNoPtr1 == squareNoPtr) cout << "Comparator overload of object worked..." << endl;
+    puts("---------------------------------------------");
 
     return 0;
 }
