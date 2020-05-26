@@ -33,7 +33,6 @@ class ChessMovementRules
     static bool isPawnOneDiagonal(Square* from, Square* to, Board* b);
     static bool canPawnMove(Square* from, Square* to, Board* b);
     
-    
     // knight check
     static bool canKnightMove(Square* from, Square* to, Board* b);
     
