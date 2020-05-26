@@ -27,7 +27,7 @@ class Square {
     static Square* makeSquare(int r, int y);
     int getRow() { return row; }
     int getColumn() { return column; }
-    void setPosition(int r, int c) { r = row; c = column; }
+    void setPosition(int r, int c) { row = r; column = c; }
     int distanceTo(Square* dest);
 
     private:

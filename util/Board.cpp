@@ -144,10 +144,15 @@ void Board::populateVect() {
 /*
 * needs testing for the new find implementation
 */
-void Board::updateKey(int r, int c, Square sq) {
-   auto foundKey = gameBoard.find(sq);
+void Board::movePiece(int r, int c, Square* sq) {
+   auto foundKey = gameBoard.find(*sq);
    Square p = foundKey->first;
+   ChessPiece piece = foundKey->second;
+   
+   removePiece(*sq, static_cast<Color>(piece.getPieceColor()));
+
    p.setPosition(r, c);
+   gameBoard.emplace(p, piece);
 }
 
 Board::~Board() {}

@@ -22,7 +22,7 @@ class Board {
         // bool isOccupied(Square *sq);
         bool isOccupied(Square sq);
         void removePiece(Square sq, Color color);
-        void updateKey(int r, int c, Square sq);
+        void movePiece(int r, int c, Square* sq);
         bool isPathClear(Square* from, Square* to);
         
         ChessPiece* getChessPiece(Square* sq);
