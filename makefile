@@ -30,4 +30,4 @@ RuleProvider.o : chess/RuleProvider.cpp chess/headers/RuleProvider.h chess/heade
 	g++ $(CFLAGS) -c chess/RuleProvider.cpp
 
 clean:
-	rm -f main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Square.o Board.o RuleProvider.o main
+	rm -f main.o ChessPiece.o ChessPieceFactory.o ChessPieceDescriptor.o Square.o Board.o RuleProvider.o ChessMovementRules.o main
