@@ -1,14 +1,8 @@
 #include "headers/Board.h"
-#include <algorithm>
 
-/**
- *  - Compare if something exists on Hashmap
- *  - check what piece is on the square
- *  - Remove piece
- *  - check boundaries with square - is it valid?
- *  - Populate with proper starting coordinates of each unit  
- * TODO: refactor with comparator
- */
+#define MAX_SIZE 8
+#define WHITE_COLOR 0
+#define BLACK_COLOR 1
 
 /**
  *   * Game Board *
@@ -30,6 +24,7 @@
 Board::Board() {
     // for(int r = 0; r < MAX_ROWS; r++) chessBoard[r] = new Square(0,0);
     initBoard();
+
     populateVect();
 }
 
@@ -40,11 +35,16 @@ Board::Board() {
  * @return true if square is occupied
  * @return false if not occoupied
  */
-bool Board::isOccupied(Square *sq) {
-    if(gameBoard.size() == 0) return false;
+bool Board::isOccupied(Square sq) {
 
-    if(gameBoard.find(sq) == gameBoard.end()) return false;
-    else return true;
+   auto foundKey = gameBoard.find(sq);
+
+   if (foundKey != gameBoard.end())
+   {
+       return true;
+   }
+
+    return false;
 }
 
 /**
@@ -53,9 +53,15 @@ bool Board::isOccupied(Square *sq) {
  * @param sq square to look at
  * @return ChessPiece* this
  */
-ChessPiece* Board::getChessPiece(Square *sq) {
-    if(isOccupied(sq)) return gameBoard.at(sq);
-    else return nullptr;
+ChessPiece* Board::getChessPiece(Square* sq) {
+    if(isOccupied(*sq)) {
+        std::map<Square, ChessPiece>::iterator it = gameBoard.find(*sq);
+        return &it->second;
+    }
+
+    
+    
+    return nullptr;
 }
 
 /**
@@ -63,7 +69,7 @@ ChessPiece* Board::getChessPiece(Square *sq) {
  * 
  * @param sq Key - square containing possible piece
  */
-void Board::removePiece(Square *sq, Color color) {
+void Board::removePiece(Square sq, Color color) {
     if(gameBoard.find(sq) != gameBoard.end()) {
         gameBoard.erase(sq);
         if(color == WHITE) {
@@ -73,50 +79,75 @@ void Board::removePiece(Square *sq, Color color) {
     }
 }
 
+bool Board::isPathClear(Square* from, Square* to)
+{
+    int from_r = from->getRow();
+    int from_c = from->getColumn();
+
+    int to_r = to->getRow();
+    int to_c = to->getColumn();
+
+    int rIncrementor = (from_r == to_r) ? 0 : ((to_r > from_r) ? 1 : -1);
+    int cIncrementor =(from_c == to_c) ? 0 : ((to_c > from_c) ? 1 : -1); 
+
+    int r = from_r + rIncrementor;
+    int c = from_c + cIncrementor;
+
+    Square* s = Square::makeSquare(r, c);
+
+    bool result = true;
+
+    while (result && !(s == to))
+    {
+        result = result && getChessPiece(Square::makeSquare(r, c)) == NULL;
+        r += rIncrementor;
+        c += cIncrementor;
+
+        s = Square::makeSquare(r, c);
+    }
+
+    return result;
+}
 /**
- * @brief Hashmap of <Square, Piece>
+ * @brief initialize map of <Square, ChessPiece*>
  * 
  */
 void Board::initBoard() {
     ChessPieceFactory* factory = new ChessPieceFactory();  
+    for(int i = 1; i <= MAX_SIZE; i++) {
+        gameBoard.emplace(Square(2, i), *factory->makePiece(new ChessPieceDescriptor(WHITE, PAWN)));
+        gameBoard.emplace(Square(7, i), *factory->makePiece(new ChessPieceDescriptor(BLACK, PAWN)));
 
-    gameBoard.insert(std::make_pair(new Square(1, 2), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(1, 3), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(1, 4), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::QUEEN))));
-    gameBoard.insert(std::make_pair(new Square(1, 5), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KING))));
-    gameBoard.insert(std::make_pair(new Square(1, 6), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(1, 7), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(1, 8), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::ROOK))));
+        int nameEnum = i % 5;
+        if(nameEnum == 1) nameEnum++;
+        Name piece = static_cast<Name>(nameEnum);
 
-    for (int col = 1; col < MAX_COLUMNS; col++)
-    {
-        gameBoard.insert(std::make_pair(new Square(2, col), factory->makePiece(new ChessPieceDescriptor(Color::WHITE, Name::PAWN))));
+        gameBoard.emplace(Square(1, i), *factory->makePiece(new ChessPieceDescriptor(WHITE, piece)));    
+        gameBoard.emplace(Square(8, i), *factory->makePiece(new ChessPieceDescriptor(BLACK, piece)));
     }
-
-    gameBoard.insert(std::make_pair(new Square(8, 1), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
-    gameBoard.insert(std::make_pair(new Square(8, 2), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(8, 3), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(8, 4), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::QUEEN))));
-    gameBoard.insert(std::make_pair(new Square(8, 5), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KING))));
-    gameBoard.insert(std::make_pair(new Square(8, 6), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::BISHOP))));
-    gameBoard.insert(std::make_pair(new Square(8, 7), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::KNIGHT))));
-    gameBoard.insert(std::make_pair(new Square(8, 8), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::ROOK))));
-
-    for (int col = 1; col < MAX_COLUMNS; col++)
-    {
-        gameBoard.insert(std::make_pair(new Square(7, col), factory->makePiece(new ChessPieceDescriptor(Color::BLACK, Name::PAWN))));
-    }
+    
+    // std::cout << gameBoard.size() << std::endl;
 
 }
 
 void Board::populateVect() {
-    std::unordered_map<Square*, ChessPiece*>::iterator it = gameBoard.begin();
+    std::map<Square, ChessPiece>::iterator it = gameBoard.begin();
     while(it != gameBoard.end()) {
-        ChessPiece* p = it->second;
-        if(p->getPieceColor() == WHITE) wPieces.push_back(it->first);
-        else                              bPieces.push_back(it->first);
+        ChessPiece* p = &it->second;
+        
+        if(p->getPieceColor() == WHITE_COLOR) wPieces.push_back(it->first);
+        else                            bPieces.push_back(it->first);
         it++;
     }
+}
+
+/*
+* needs testing for the new find implementation
+*/
+void Board::updateKey(int r, int c, Square sq) {
+   auto foundKey = gameBoard.find(sq);
+   Square p = foundKey->first;
+   p.setPosition(r, c);
 }
 
 Board::~Board() {}

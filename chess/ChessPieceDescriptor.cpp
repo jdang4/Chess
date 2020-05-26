@@ -1,4 +1,5 @@
 #include "headers/ChessPieceDescriptor.h"
+#include <iostream>
 
 ChessPieceDescriptor::ChessPieceDescriptor(Color pieceColor, Name pieceName) {
     color = pieceColor;

@@ -13,20 +13,17 @@ Square* Square::makeSquare(int r, int c) {
     return coord;
 }
 
-// ! Deprecated lambda function
 const auto orthoCheck = [](Square* start, Square* end) 
 {
     return start->getRow() == end->getRow() || start->getColumn() == end->getColumn();
 };
 
-// ! Deprecated lambda function
 const auto diagonalCheck = [](Square* start, Square* end)
 {
     return abs(start->getRow() - end->getRow()) == abs(start->getColumn() - end->getColumn());
 };
 
 /**
- * ! deprecated Method
  * @brief Gets the distance between the calling Square to the destination Square
  * 
  * @param dest the Square to get the distance to
