@@ -5,15 +5,6 @@
 #define BLACK_COLOR 1
 
 /**
- *  - Compare if something exists on Hashmap
- *  - check what piece is on the square
- *  - Remove piece
- *  - check boundaries with square - is it valid?
- *  - Populate with proper starting coordinates of each unit  
- * TODO: refactor with comparator
- */
-
-/**
  *   * Game Board *
  * 8
  * 7
@@ -37,13 +28,13 @@ Board::Board() {
     populateVect();
 }
 
-// /**
-//  * @brief check to see if a square on the board is occupied
-//  * 
-//  * @param sq square to check
-//  * @return true if square is occupied
-//  * @return false if not occoupied
-//  */
+/**
+ * @brief check to see if a square on the board is occupied
+ * 
+ * @param sq square to check
+ * @return true if square is occupied
+ * @return false if not occoupied
+ */
 bool Board::isOccupied(Square sq) {
 
    auto foundKey = gameBoard.find(sq);
@@ -123,36 +114,19 @@ bool Board::isPathClear(Square* from, Square* to)
  */
 void Board::initBoard() {
     ChessPieceFactory* factory = new ChessPieceFactory();  
+    for(int i = 1; i <= MAX_SIZE; i++) {
+        gameBoard.emplace(Square(2, i), *factory->makePiece(new ChessPieceDescriptor(WHITE, PAWN)));
+        gameBoard.emplace(Square(7, i), *factory->makePiece(new ChessPieceDescriptor(BLACK, PAWN)));
 
-    gameBoard.emplace(Square(1, 1), *factory->makePiece(new ChessPieceDescriptor(WHITE, ROOK)));    
-    gameBoard.emplace(Square(1, 2), *factory->makePiece(new ChessPieceDescriptor(WHITE, KNIGHT)));
-    gameBoard.emplace(Square(1, 3), *factory->makePiece(new ChessPieceDescriptor(WHITE, BISHOP)));
-    gameBoard.emplace(Square(1, 4), *factory->makePiece(new ChessPieceDescriptor(WHITE, QUEEN)));
-    gameBoard.emplace(Square(1, 5), *factory->makePiece(new ChessPieceDescriptor(WHITE, KING)));
-    gameBoard.emplace(Square(1, 6), *factory->makePiece(new ChessPieceDescriptor(WHITE, BISHOP)));
-    gameBoard.emplace(Square(1, 7), *factory->makePiece(new ChessPieceDescriptor(WHITE, KNIGHT)));
-    gameBoard.emplace(Square(1, 8), *factory->makePiece(new ChessPieceDescriptor(WHITE, ROOK)));
+        int nameEnum = i % 5;
+        if(nameEnum == 1) nameEnum++;
+        Name piece = static_cast<Name>(nameEnum);
 
-    for (int col = 1; col <= MAX_SIZE; col++) 
-    {
-        gameBoard.emplace(Square(2, col), *factory->makePiece(new ChessPieceDescriptor(WHITE, PAWN)));
-    }
-
-    gameBoard.emplace(Square(8, 1), *factory->makePiece(new ChessPieceDescriptor(BLACK, ROOK)));
-    gameBoard.emplace(Square(8, 2), *factory->makePiece(new ChessPieceDescriptor(BLACK, KNIGHT)));
-    gameBoard.emplace(Square(8, 3), *factory->makePiece(new ChessPieceDescriptor(BLACK, BISHOP)));
-    gameBoard.emplace(Square(8, 4), *factory->makePiece(new ChessPieceDescriptor(BLACK, QUEEN)));
-    gameBoard.emplace(Square(8, 5), *factory->makePiece(new ChessPieceDescriptor(BLACK, KING)));
-    gameBoard.emplace(Square(8, 6), *factory->makePiece(new ChessPieceDescriptor(BLACK, BISHOP)));
-    gameBoard.emplace(Square(8, 7), *factory->makePiece(new ChessPieceDescriptor(BLACK, KNIGHT)));
-    gameBoard.emplace(Square(8, 8), *factory->makePiece(new ChessPieceDescriptor(BLACK, ROOK)));
-
-    for (int col = 1; col <= MAX_SIZE; col++)
-    {
-        gameBoard.emplace(Square(7, col), *factory->makePiece(new ChessPieceDescriptor(BLACK, PAWN)));
+        gameBoard.emplace(Square(1, i), *factory->makePiece(new ChessPieceDescriptor(WHITE, piece)));    
+        gameBoard.emplace(Square(8, i), *factory->makePiece(new ChessPieceDescriptor(BLACK, piece)));
     }
     
-    //std::cout << gameBoard.size() << std::endl;
+    // std::cout << gameBoard.size() << std::endl;
 
 }
 
