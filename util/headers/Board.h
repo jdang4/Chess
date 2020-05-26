@@ -25,7 +25,7 @@ class Board {
         void updateKey(int r, int c, Square sq);
         bool isPathClear(Square* from, Square* to);
         
-        ChessPiece* getChessPiece(Square sq);
+        ChessPiece* getChessPiece(Square* sq);
         std::vector<Square> getAllbPieces() { return bPieces; }
         std::vector<Square> getAllwPieces() { return wPieces; }
         std::map<Square, ChessPiece> getGameBoard() { return gameBoard; } // for testing purposes

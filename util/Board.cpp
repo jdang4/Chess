@@ -45,13 +45,14 @@ Board::Board() {
 //  * @return false if not occoupied
 //  */
 bool Board::isOccupied(Square sq) {
-    if(gameBoard.size() == 0) return false;
 
-    std::map<Square, ChessPiece>::iterator it = gameBoard.begin();
-    while(it != gameBoard.end()) {
-        if(sq == it->first) return true;
-        it++;
-    }
+   auto foundKey = gameBoard.find(sq);
+
+   if (foundKey != gameBoard.end())
+   {
+       return true;
+   }
+
     return false;
 }
 
@@ -61,9 +62,9 @@ bool Board::isOccupied(Square sq) {
  * @param sq square to look at
  * @return ChessPiece* this
  */
-ChessPiece* Board::getChessPiece(Square sq) {
-    if(isOccupied(sq)) {
-        std::map<Square, ChessPiece>::iterator it = gameBoard.find(sq);
+ChessPiece* Board::getChessPiece(Square* sq) {
+    if(isOccupied(*sq)) {
+        std::map<Square, ChessPiece>::iterator it = gameBoard.find(*sq);
         return &it->second;
     }
 
@@ -107,8 +108,7 @@ bool Board::isPathClear(Square* from, Square* to)
 
     while (result && !(s == to))
     {
-        Square squareNoPtr(s->getRow(), s->getColumn());
-        result = result && getChessPiece(squareNoPtr) == NULL;
+        result = result && getChessPiece(Square::makeSquare(r, c)) == NULL;
         r += rIncrementor;
         c += cIncrementor;
 

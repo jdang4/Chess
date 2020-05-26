@@ -7,6 +7,7 @@
 #include "chess/headers/ChessPiece.h"
 #include "chess/headers/ChessPieceFactory.h"
 #include "chess/headers/ChessMovementRules.h"
+#include "chess/headers/RuleProvider.h"
 #include "util/headers/Square.h"
 #include "util/headers/Board.h"
 
@@ -59,6 +60,22 @@ int main() {
     else
     {
         cout << "CAN'T FIND" << endl;
+    }
+
+    ChessMovementRules* rules = new ChessMovementRules();
+
+    cout << rules->isValidTarget(Square::makeSquare(7, 2), Square::makeSquare(5, 2), b) << endl << endl;
+    cout << rules->isPawnOneForward(Square::makeSquare(7, 2), Square::makeSquare(8, 2), b) << endl;
+
+    RuleProvider* r = new RuleProvider();
+
+    map<int, std::function<bool(Square*, Square*, Board*)>> myMap = r->getMoveRules();
+
+    auto pieceKey = myMap.find(0);
+
+    if (pieceKey != myMap.end())
+    {
+        cout << pieceKey->second(Square::makeSquare(2, 5), Square::makeSquare(3, 5), b) << endl;
     }
 
     return 0;
