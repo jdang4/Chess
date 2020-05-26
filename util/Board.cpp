@@ -57,8 +57,8 @@ bool Board::isOccupied(Square sq) {
  * @return ChessPiece* this
  */
 ChessPiece* Board::getChessPiece(Square sq) {
-    if(isOccupied(sq)) {
-        std::map<Square, ChessPiece*>::iterator it = gameBoard.find(sq);
+    std::map<Square, ChessPiece*>::iterator it = gameBoard.find(sq);
+    if(it != gameBoard.end()) {
         return it->second;
     }
     else return nullptr;
