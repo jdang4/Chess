@@ -10,6 +10,9 @@
 #include "../../chess/headers/ChessPieceFactory.h"
 #include "../headers/Square.h"
 
+#define MAX_SIZE 8
+#define WHITE_COLOR 0
+#define BLACK_COLOR 1
 
 class Square;
 class ChessPiece;
@@ -22,7 +25,7 @@ class Board {
         // bool isOccupied(Square *sq);
         bool isOccupied(Square sq);
         void removePiece(Square sq, Color color);
-        void updateKey(int r, int c, Square sq);
+        bool updateKey(int r, int c, Square sq);
         bool isPathClear(Square* from, Square* to);
         
         ChessPiece* getChessPiece(Square* sq);

@@ -44,8 +44,11 @@ int main() {
         cout << wPieces.at(i).getRow() << " ";
 
     if(b->isOccupied(squareNoPtr)) cout << "\nisOccupied works" << endl;
+    if(squareNoPtr1 == squareNoPtr) cout << "Comparator overload of Square object worked..." << endl;
 
-    if(squareNoPtr1 == squareNoPtr) cout << "Comparator overload of object worked..." << endl;
+    b->updateKey(4, 4, Square(1, 1)); // move Rook to spot 4, 4    
+    if(!b->isOccupied(squareNoPtr1) && b->isOccupied(Square(4, 4))) cout << "updateKey() works..." << endl;
+
     puts("---------------------------------------------");
 
     auto foundKey = gameA.find(squareNoPtr);

@@ -1,9 +1,5 @@
 #include "headers/Board.h"
 
-#define MAX_SIZE 8
-#define WHITE_COLOR 0
-#define BLACK_COLOR 1
-
 /**
  *   * Game Board *
  * 8
@@ -58,16 +54,15 @@ ChessPiece* Board::getChessPiece(Square* sq) {
         std::map<Square, ChessPiece>::iterator it = gameBoard.find(*sq);
         return &it->second;
     }
-
-    
     
     return nullptr;
 }
 
 /**
- * @brief remove chess piece from map
+ * @brief function to remove a piece on the board
  * 
- * @param sq Key - square containing possible piece
+ * @param sq key = square
+ * @param color identify which vector to delete from
  */
 void Board::removePiece(Square sq, Color color) {
     if(gameBoard.find(sq) != gameBoard.end()) {
@@ -79,6 +74,14 @@ void Board::removePiece(Square sq, Color color) {
     }
 }
 
+/**
+ * @brief function to check if path is clear
+ * 
+ * @param from start pos
+ * @param to target pos
+ * @return true pathClear
+ * @return false !pathClear
+ */
 bool Board::isPathClear(Square* from, Square* to)
 {
     int from_r = from->getRow();
@@ -130,6 +133,10 @@ void Board::initBoard() {
 
 }
 
+/**
+ * @brief function to populate vectors based on COLOR
+ * 
+ */
 void Board::populateVect() {
     std::map<Square, ChessPiece>::iterator it = gameBoard.begin();
     while(it != gameBoard.end()) {
@@ -141,13 +148,23 @@ void Board::populateVect() {
     }
 }
 
-/*
-* needs testing for the new find implementation
-*/
-void Board::updateKey(int r, int c, Square sq) {
+/**
+ * @brief function creates new key value to update board
+ * 
+ * @param r new row
+ * @param c new col
+ * @param sq square to look at
+ */
+bool Board::updateKey(int r, int c, Square sq) {
    auto foundKey = gameBoard.find(sq);
-   Square p = foundKey->first;
-   p.setPosition(r, c);
+   
+   if(isOccupied(sq)) {
+    ChessPiece* newChess = &(foundKey->second);
+    gameBoard.erase(foundKey);
+    gameBoard.emplace(Square(r, c), *newChess);
+    return true;
+   }
+   return false;
 }
 
 Board::~Board() {}
