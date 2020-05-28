@@ -10,6 +10,7 @@
 #include "chess/headers/RuleProvider.h"
 #include "util/headers/Square.h"
 #include "util/headers/Board.h"
+#include "util/headers/TerminalBoard.h"
 
 using namespace std;
 
@@ -51,6 +52,11 @@ int main() {
 
     puts("---------------------------------------------");
 
+    puts("-----------------TerminalBoard---------------");
+    TerminalBoard *t = new TerminalBoard();
+    t->printBoard(b);
+
+    puts("---------------------------------------------");
     auto foundKey = gameA.find(squareNoPtr);
 
     if (foundKey != gameA.end())
