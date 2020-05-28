@@ -53,7 +53,7 @@ int main() {
     puts("---------------------------------------------");
 
     puts("-----------------TerminalBoard---------------");
-    TerminalBoard *t = new TerminalBoard();
+    TerminalBoard *t = new TerminalBoard("Steve", "Stony");
     t->printBoard(b);
 
     puts("---------------------------------------------");
@@ -86,7 +86,7 @@ int main() {
     {
         if (pieceKey->second(Square::makeSquare(2, 5), Square::makeSquare(3, 5), b))
         {
-            b->movePiece(3, 5, Square::makeSquare(2, 5));
+            b->updateKey(3, 5, *Square::makeSquare(2, 5));
 
             cout << ((b->getChessPiece(Square::makeSquare(2, 5)) == NULL) ? "TRUE" : "FALSE") << endl;
         }
