@@ -84,7 +84,12 @@ int main() {
 
     if (pieceKey != myMap.end())
     {
-        cout << pieceKey->second(Square::makeSquare(2, 5), Square::makeSquare(3, 5), b) << endl;
+        if (pieceKey->second(Square::makeSquare(2, 5), Square::makeSquare(3, 5), b))
+        {
+            b->movePiece(3, 5, Square::makeSquare(2, 5));
+
+            cout << ((b->getChessPiece(Square::makeSquare(2, 5)) == NULL) ? "TRUE" : "FALSE") << endl;
+        }
     }
 
     return 0;
