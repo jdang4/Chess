@@ -5,6 +5,7 @@
 #include <iostream>
 #include <string>
 #include "Board.h"
+#include "../../chess/headers/ChessPieceDescriptor.h"
 
 class TerminalBoard {
 
@@ -13,17 +14,20 @@ class TerminalBoard {
         virtual ~TerminalBoard();
         void printBoard(Board *b);
         TerminalBoard verHistory(int ver);
-        void updatePieces(Board* board);
+        void updatePieces(Board* b);
         
     private:  
         int printCount = 0;
         const char* player1;
         const char* player2;
         void storeVer();
-        void printChessPiece();
+        void printPieces(Board* b);
+        std::string returnChesspiecePrint(ChessPieceDescriptor c);
         std::vector<TerminalBoard*> history; 
         std::vector<ChessPiece*> P1Pieces; 
-        std::vector<ChessPiece*> P2Pieces; 
+        std::vector<ChessPiece*> P2Pieces;
+        std::string w[6] = {"♟", "♜", "♞", "♝", "♛", "♚"};
+        std::string b[6] = {"♙", "♖", "♘", "♙", "♕", "♔"};
 
 };
 

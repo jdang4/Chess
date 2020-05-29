@@ -21,7 +21,7 @@ Board::Board() {
     // for(int r = 0; r < MAX_ROWS; r++) chessBoard[r] = new Square(0,0);
     initBoard();
 
-    populateVect();
+    // populateVect();
 }
 
 /**
@@ -67,10 +67,11 @@ ChessPiece* Board::getChessPiece(Square* sq) {
 void Board::removePiece(Square sq, Color color) {
     if(gameBoard.find(sq) != gameBoard.end()) {
         gameBoard.erase(sq);
-        if(color == WHITE) {
-            wPieces.erase(std::find(wPieces.begin(), wPieces.end(), sq));
-        }
-        else bPieces.erase(std::find(bPieces.begin(), bPieces.end(), sq));
+        populateVect(getChessPiece(&sq));
+        // if(color == WHITE) {
+        //     wPieces.erase(std::find(wPieces.begin(), wPieces.end(), sq));
+        // }
+        // else bPieces.erase(std::find(bPieces.begin(), bPieces.end(), sq));
     }
 }
 
@@ -134,18 +135,13 @@ void Board::initBoard() {
 }
 
 /**
- * @brief function to populate vectors based on COLOR
+ * @brief function to populate vectors based on COLOR.
+ *        Used to keep track of pieces that have been lost/won
  * 
  */
-void Board::populateVect() {
-    std::map<Square, ChessPiece>::iterator it = gameBoard.begin();
-    while(it != gameBoard.end()) {
-        ChessPiece* p = &it->second;
-        
-        if(p->getPieceColor() == WHITE_COLOR) wPieces.push_back(it->first);
-        else                            bPieces.push_back(it->first);
-        it++;
-    }
+void Board::populateVect(ChessPiece* p) {
+    if(p->getPieceColor() == WHITE) wPieces.push_back(p);
+    else                            bPieces.push_back(p);
 }
 
 /**

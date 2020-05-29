@@ -11,8 +11,8 @@
 #include "../headers/Square.h"
 
 #define MAX_SIZE 8
-#define WHITE_COLOR 0
-#define BLACK_COLOR 1
+// #define WHITE_COLOR 0
+// #define BLACK_COLOR 1
 
 class Square;
 class ChessPiece;
@@ -29,8 +29,8 @@ class Board {
         bool isPathClear(Square* from, Square* to);
         
         ChessPiece* getChessPiece(Square* sq);
-        std::vector<Square> getAllbPieces() { return bPieces; }
-        std::vector<Square> getAllwPieces() { return wPieces; }
+        std::vector<ChessPiece*> getAllbPieces() { return bPieces; }
+        std::vector<ChessPiece*> getAllwPieces() { return wPieces; }
         std::map<Square, ChessPiece> getGameBoard() { return gameBoard; } // for testing purposes
 
 
@@ -38,12 +38,11 @@ class Board {
         // Square **chessBoard = new Square*[8];
 
         void initBoard();
-        void populateVect();
+        void populateVect(ChessPiece* p);
         std::map<Square, ChessPiece> gameBoard; 
 
-        //prolly don't need these anymore since we can compare directly
-        std::vector<Square> bPieces;
-        std::vector<Square> wPieces;
+        std::vector<ChessPiece*> bPieces;
+        std::vector<ChessPiece*> wPieces;
         
 };
 

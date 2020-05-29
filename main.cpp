@@ -30,19 +30,19 @@ int main() {
     puts("----------Testing Board and Square-----------");
     Board *b = new Board();
     map<Square, ChessPiece> gameA = b->getGameBoard();
-    vector<Square> bPieces = b->getAllbPieces();
-    vector<Square> wPieces = b->getAllwPieces();
+    // vector<Square> bPieces = b->getAllbPieces();
+    // vector<Square> wPieces = b->getAllwPieces();
     Square squareNoPtr(1,1);
     Square squareNoPtr1(1,1);
     Square squareNoPtr2(2,2);
 
-    cout << "Black Pieces: ";
-    for(int i = 0; i < bPieces.size(); i++) 
-        cout << bPieces.at(i).getRow() << " ";
+    // cout << "Black Pieces: ";
+    // for(int i = 0; i < bPieces.size(); i++) 
+    //     cout << bPieces.at(i).getRow() << " ";
 
-    cout << "\nWhite Pieces: ";
-    for(int i = 0; i < wPieces.size(); i++) 
-        cout << wPieces.at(i).getRow() << " ";
+    // cout << "\nWhite Pieces: ";
+    // for(int i = 0; i < wPieces.size(); i++) 
+    //     cout << wPieces.at(i).getRow() << " ";
 
     if(b->isOccupied(squareNoPtr)) cout << "\nisOccupied works" << endl;
     if(squareNoPtr1 == squareNoPtr) cout << "Comparator overload of Square object worked..." << endl;
@@ -53,7 +53,7 @@ int main() {
     puts("---------------------------------------------");
 
     puts("-----------------TerminalBoard---------------");
-    TerminalBoard *t = new TerminalBoard("Steve", "Stony");
+    TerminalBoard *t = new TerminalBoard((char*)"Steve", (char*)"Stony");
     t->printBoard(b);
 
     puts("---------------------------------------------");
