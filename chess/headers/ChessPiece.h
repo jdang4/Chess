@@ -22,7 +22,7 @@ class ChessPiece {
 
 	// class methods
 	bool getHasMoved();
-	ChessPieceDescriptor* getDescriptor();
+	ChessPieceDescriptor* getDescriptor() const;
 	int getPieceName();
 	int getPieceColor();
     bool canMove(Board* board, Square* from, Square* to);

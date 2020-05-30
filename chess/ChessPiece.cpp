@@ -15,7 +15,7 @@ bool ChessPiece::getHasMoved() {
     return hasMoved;
 }
 
-ChessPieceDescriptor* ChessPiece::getDescriptor() {
+ChessPieceDescriptor* ChessPiece::getDescriptor() const {
     return descriptor;
 }
 

@@ -25,11 +25,20 @@ TerminalBoard::TerminalBoard(char *p1, char *p2) {
 
 /**
  * @brief function to print out the board
- * 
+ * TODO: refactor
  * @param b 
  */
 void TerminalBoard::printBoard(Board *b) {
-    auto board = b->getGameBoard();
+    std::vector<std::vector<std::string>> boardMap;
+    
+    for (auto const& it : b->getGameBoard()) {
+        int r = it.first.getRow();
+        int c = it.first.getColumn();
+        auto *p = (it.second.getDescriptor());
+        //TODO: this broke
+        // boardMap[r][c].append(returnChesspiecePrint(*p));
+
+    }
 
     if(printCount != 0) {
         // add to history bank
@@ -38,9 +47,12 @@ void TerminalBoard::printBoard(Board *b) {
     for(int i = 1; i <= 8; i++) {
         std::cout << "| ";
         for(int j = 1; j <= 8; j++) {
-            if     (j % 2 == 0 && i % 2 != 0) std::cout << "█ "; // double if you want Square, won't look good with chess pieces though
+            //TODO: this broke
+            // if     ((boardMap[i][j].size() > 0) && (j % 2 == 0) && (i % 2 != 0)) std::cout << "I";
+            if(j % 2 == 0 && i % 2 != 0) std::cout << "█ "; // double if you want Square, won't look good with chess pieces though
             else if(j % 2 != 0 && i % 2 == 0) std::cout << " █";
         }
+
         if(i == 1) printf(" |\tPlayer1: %s\n", player1);
         else if(i == 2) printf(" |\tPlayer2: %s\n", player2);
         else std::cout << " |\n";
@@ -74,10 +86,11 @@ void TerminalBoard::printPieces(Board* b) {
  * @return std::string unique chess string
  */
 std::string TerminalBoard::returnChesspiecePrint(ChessPieceDescriptor c) {
-    std::string *set;
+    auto cCpy = c;
+    const std::string *set;
     if(c.getColor() == WHITE) set = w;
     else                      set = b;
-    return set[c.getPieceName()];
+    return set[cCpy.getPieceName()];
 
 }
 

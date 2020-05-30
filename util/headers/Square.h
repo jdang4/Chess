@@ -5,8 +5,6 @@
 #include <iostream>
 #include <tuple>
 
-using namespace std;
-
 class Square {
 
     public:
@@ -18,15 +16,15 @@ class Square {
     */
     bool operator<(const Square& s) const
     { 
-        return tie(row, column) < tie(s.row, s.column);
+        return std::tie(row, column) < std::tie(s.row, s.column);
     } 
 
     Square(int r, int y);
     virtual ~Square();
 
     static Square* makeSquare(int r, int y);
-    int getRow() { return row; }
-    int getColumn() { return column; }
+    int getRow() const { return row; }
+    int getColumn() const { return column; }
     void setPosition(int r, int c) { row = r; column = c; }
     int distanceTo(Square* dest);
 

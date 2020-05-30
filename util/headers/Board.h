@@ -31,7 +31,7 @@ class Board {
         ChessPiece* getChessPiece(Square* sq);
         std::vector<ChessPiece*> getAllbPieces() { return bPieces; }
         std::vector<ChessPiece*> getAllwPieces() { return wPieces; }
-        std::map<Square, ChessPiece> getGameBoard() { return gameBoard; } // for testing purposes
+        std::map<Square, ChessPiece> getGameBoard() { return gameBoard; } 
 
 
     private:   

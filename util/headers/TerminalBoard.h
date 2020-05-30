@@ -4,6 +4,8 @@
 #include <vector>
 #include <iostream>
 #include <string>
+#include <map>
+#include <iostream>
 #include "Board.h"
 #include "../../chess/headers/ChessPieceDescriptor.h"
 
@@ -26,8 +28,8 @@ class TerminalBoard {
         std::vector<TerminalBoard*> history; 
         std::vector<ChessPiece*> P1Pieces; 
         std::vector<ChessPiece*> P2Pieces;
-        std::string w[6] = {"♟", "♜", "♞", "♝", "♛", "♚"};
-        std::string b[6] = {"♙", "♖", "♘", "♙", "♕", "♔"};
+        const std::string w[6] = {"♟", "♜", "♞", "♝", "♛", "♚"};
+        const std::string b[6] = {"♙", "♖", "♘", "♙", "♕", "♔"};
 
 };
 
