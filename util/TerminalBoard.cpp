@@ -29,14 +29,16 @@ TerminalBoard::TerminalBoard(char *p1, char *p2) {
  * @param b 
  */
 void TerminalBoard::printBoard(Board *b) {
-    std::vector<std::vector<std::string>> boardMap;
+    std::map<std::pair<int, int>, std::string> boardMap;
     
+    // for(int i = 0; i < 6; i++) std::cout << w[i] << std::endl;
+
     for (auto const& it : b->getGameBoard()) {
         int r = it.first.getRow();
         int c = it.first.getColumn();
         auto *p = (it.second.getDescriptor());
-        //TODO: this broke
-        // boardMap[r][c].append(returnChesspiecePrint(*p));
+        // std::cout << returnChesspiecePrint(*p) << std::endl;
+        boardMap.emplace(std::make_pair(r, c), returnChesspiecePrint(*p));
 
     }
 
@@ -46,10 +48,13 @@ void TerminalBoard::printBoard(Board *b) {
 
     for(int i = 1; i <= 8; i++) {
         std::cout << "| ";
+
+        // TODO: refactor
         for(int j = 1; j <= 8; j++) {
-            //TODO: this broke
-            // if     ((boardMap[i][j].size() > 0) && (j % 2 == 0) && (i % 2 != 0)) std::cout << "I";
-            if(j % 2 == 0 && i % 2 != 0) std::cout << "█ "; // double if you want Square, won't look good with chess pieces though
+            std::pair<int, int> pos = std::make_pair(i, j);
+            if     ((boardMap.find(pos) != boardMap.end()) && (j % 2 == 0) && (i % 2 != 0)) std::cout << boardMap[pos] << " ";
+            else if((boardMap.find(pos) != boardMap.end()) && (j % 2 != 0) && (i % 2 == 0)) std::cout << " " << boardMap[pos];
+            else if(j % 2 == 0 && i % 2 != 0) std::cout << "█ "; // double if you want Square, won't look good with chess pieces though
             else if(j % 2 != 0 && i % 2 == 0) std::cout << " █";
         }
 
@@ -86,11 +91,11 @@ void TerminalBoard::printPieces(Board* b) {
  * @return std::string unique chess string
  */
 std::string TerminalBoard::returnChesspiecePrint(ChessPieceDescriptor c) {
-    auto cCpy = c;
-    const std::string *set;
-    if(c.getColor() == WHITE) set = w;
-    else                      set = b;
-    return set[cCpy.getPieceName()];
+    // const std::string *set;
+    // std::cout << w[c.getPieceName()];
+    if(c.getColor() == WHITE) return w[c.getPieceName()];
+    else                      return b[c.getPieceName()];
+    // return set[c.getPieceName()];
 
 }
 
